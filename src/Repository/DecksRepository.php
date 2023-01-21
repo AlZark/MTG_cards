@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Deck;
+use App\Entity\Decks;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Deck>
+ * @extends ServiceEntityRepository<Decks>
  *
- * @method Deck|null find($id, $lockMode = null, $lockVersion = null)
- * @method Deck|null findOneBy(array $criteria, array $orderBy = null)
- * @method Deck[]    findAll()
- * @method Deck[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Decks|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Decks|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Decks[]    findAll()
+ * @method Decks[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DeckRepository extends ServiceEntityRepository
+class DecksRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Deck::class);
+        parent::__construct($registry, Decks::class);
     }
 
-    public function save(Deck $entity, bool $flush = false): void
+    public function save(Decks $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class DeckRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Deck $entity, bool $flush = false): void
+    public function remove(Decks $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class DeckRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Deck[] Returns an array of Deck objects
+//     * @return Decks[] Returns an array of Decks objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class DeckRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Deck
+//    public function findOneBySomeField($value): ?Decks
 //    {
 //        return $this->createQueryBuilder('d')
 //            ->andWhere('d.exampleField = :val')

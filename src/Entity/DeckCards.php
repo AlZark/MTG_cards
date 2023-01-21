@@ -16,8 +16,8 @@ class DeckCards
     #[ORM\Column]
     private ?int $card_id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?deck $deck_id = null;
+    #[ORM\OneToOne(inversedBy: 'deckCards', cascade: ['persist', 'remove'])]
+    private ?Decks $deck = null;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class DeckCards
         return $this;
     }
 
-    public function getDeckId(): ?deck
+    public function getDeck(): ?Decks
     {
-        return $this->deck_id;
+        return $this->deck;
     }
 
-    public function setDeckId(?deck $deck_id): self
+    public function setDeck(?Decks $deck): self
     {
-        $this->deck_id = $deck_id;
+        $this->deck = $deck;
 
         return $this;
     }

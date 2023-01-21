@@ -25,7 +25,7 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Deck::class)]
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Decks::class)]
     private Collection $decks;
 
     public function __construct()
@@ -75,29 +75,29 @@ class User
     }
 
     /**
-     * @return Collection<int, Deck>
+     * @return Collection<int, Decks>
      */
     public function getDecks(): Collection
     {
         return $this->decks;
     }
 
-    public function addDeck(Deck $deck): self
+    public function addDeck(Decks $deck): self
     {
         if (!$this->decks->contains($deck)) {
             $this->decks->add($deck);
-            $deck->setUserId($this);
+            $deck->setOwner($this);
         }
 
         return $this;
     }
 
-    public function removeDeck(Deck $deck): self
+    public function removeDeck(Decks $deck): self
     {
         if ($this->decks->removeElement($deck)) {
             // set the owning side to null (unless already changed)
-            if ($deck->getUserId() === $this) {
-                $deck->setUserId(null);
+            if ($deck->getOwner() === $this) {
+                $deck->setOwner(null);
             }
         }
 
