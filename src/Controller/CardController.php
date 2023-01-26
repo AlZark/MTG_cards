@@ -17,6 +17,21 @@ class CardController extends AbstractController
         $this->client = $client;
     }
 
+    #[Route('/')]
+    public function homepage(): Response
+    {
+        $cards = $this->getCardList()->getContent();
+        $data = json_decode($cards, true);
+
+        return $this->render('card/homepage.html.twig', [
+            'title' => 'MTG Cards',
+            'cards' => $data['cards']
+        ]);
+    }
+
+
+
+
     #[Route('api/cards', methods: ['GET'])]
     public function getCardList(): Response
     {
@@ -30,8 +45,6 @@ class CardController extends AbstractController
         $contentType = $response->getHeaders()['content-type'][0];
         // $contentType = 'application/json'
 
-        //dd($content);
-
-        return $this->json($response->toArray());
+         return $this->json($response->toArray());
     }
 }

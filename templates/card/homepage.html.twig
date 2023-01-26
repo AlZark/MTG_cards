@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Card list | {{ parent() }}{% endblock %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+{# TODO: add an image of the record #}
+<div>
+    Cards:
+
+    <ul>
+        {% for card in cards %}
+            <li>
+                {{ card['name'] }} | {{ card['manaCost'] }}
+            </li>
+            {% if card['imageUrl'] is defined %}
+                    <img src="{{ card['imageUrl'] }}">
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
