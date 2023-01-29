@@ -1,0 +1,30 @@
+body {
+    background-color: #17242C;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.card-list i {
+    padding-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.card-list {
+    padding-bottom: 30px;
+}
+
+.search {
+    display: flex;
+    justify-content: end;
+    float: right;
+}
+
+.card-details {
+    background-color: #222F36;
+    border-radius: 5px;
+    padding: 5px;
+}

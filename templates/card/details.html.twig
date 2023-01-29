@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="text-center">
+            <h1>{{ card['name'] }} {% if card['manaCost'] is defined %} | {{ card['manaCost'] }} {% endif %}</h1>
+            {% if card['imageUrl'] is defined %}
+                <img class="card-list" src="{{ card['imageUrl'] }}">
+            {% endif %}
+            <br>
+            <span>{{ card['type'] }} | {{ card['rarity'] }}<span><br>
+            <span>{{ card['text'] }}
+
+        </div>
+    </div>
+{% endblock %}
