@@ -2,36 +2,43 @@
 
 namespace App\Controller;
 
+use App\Service\CardService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+
 
 class CardController extends AbstractController
 {
 
-    private $client;
-
-    public function __construct(HttpClientInterface $client)
+    #[Route('cards/', name: 'cards')]
+    public function getCards(Request $request, CardService $service): Response
     {
-        $this->client = $client;
+        $color = $request->query->get('color');
+        $q = $request->query->get('q');
+
+        $cards = $this->json($service->getAllCards($color, $q)->toArray())->getContent();
+
+        $data = json_decode($cards, true);
+
+        return $this->render('card/list.html.twig', [
+            'title' => 'MTG Cards',
+            'cards' => $data['cards'],
+        ]);
     }
 
-    #[Route('api/cards', methods: ['GET'])]
-    public function getCardList(): Response
+    #[Route('cards/{id}', name: 'card_view')]
+    public function cardDetails($id, CardService $service): Response
     {
-        $response = $this->client->request(
-            'GET',
-            'https://api.magicthegathering.io/v1/cards',
-        );
+        $card = $this->json($service->getCardsById($id)->toArray())->getContent();
 
-        $statusCode = $response->getStatusCode();
-        // $statusCode = 200
-        $contentType = $response->getHeaders()['content-type'][0];
-        // $contentType = 'application/json'
+        $data = json_decode($card, true);
 
-        //dd($content);
-
-        return $this->json($response->toArray());
+        return $this->render('card/view.html.twig', [
+            'title' => 'MTG Cards',
+            'card' => $data['card'],
+        ]);
     }
+
 }

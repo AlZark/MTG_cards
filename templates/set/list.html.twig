@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Set list</h1>
+
+        <div class="col col-md-12">
+            <div class="search">
+                <form action="{{ path('sets') }}">
+                    <input type="text" placeholder="Search..." id="query" name="q">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="mt-5">Sets</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>ReleaseDate</th>
+                    <th>Expansion</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for set in sets %}
+                    <tr>
+                        <th>{{ set['name'] }}</th>
+                        <th>{{ set['code'] }}</th>
+                        <th>{{ set['releaseDate'] }}</th>
+                        <th>{{ set['type'] }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
