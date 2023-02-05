@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230121080314 extends AbstractMigration
+final class Version20230205112303 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,7 +21,9 @@ final class Version20230121080314 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SEQUENCE deck_cards_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE deck_cards (card_id INT NOT NULL)');
+        $this->addSql('CREATE SEQUENCE decks_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE deck_cards (id INT NOT NULL, card_id INT NOT NULL, deck_id INT NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE decks (id INT NOT NULL, name VARCHAR(50) NOT NULL, upvotes INT NOT NULL, downvotes INT NOT NULL, owner INT DEFAULT NULL, PRIMARY KEY(id))');
     }
 
     public function down(Schema $schema): void
@@ -29,6 +31,8 @@ final class Version20230121080314 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
         $this->addSql('DROP SEQUENCE deck_cards_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE decks_id_seq CASCADE');
         $this->addSql('DROP TABLE deck_cards');
+        $this->addSql('DROP TABLE decks');
     }
 }

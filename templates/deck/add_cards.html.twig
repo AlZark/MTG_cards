@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Deck: {{ deck }}</h1>
+
+
+
+
+{#        <h2 class="mt-5 mb-4">Filter by Color</h2>#}
+{#        <div class="row">#}
+{#            <div class="col col-md-6">#}
+{#                <ul class="genre-list ps-0 mt-2 mb-3">#}
+{#                    <li class="d-inline">#}
+{#                        <a class="btn btn-primary btn-sm" href="{{ path('cards', {#}
+{#                            color: 'W'#}
+{#                        }) }}">White</a>#}
+{#                    </li>#}
+{#                    <li class="d-inline">#}
+{#                        <a class="btn btn-primary btn-sm" href="{{ path('cards', {#}
+{#                            color: 'U'#}
+{#                        }) }}">Blue</a>#}
+{#                    </li>#}
+{#                    <li class="d-inline">#}
+{#                        <a class="btn btn-primary btn-sm" href="{{ path('cards', {#}
+{#                            color: 'B'#}
+{#                        }) }}">Black</a>#}
+{#                    </li>#}
+{#                    <li class="d-inline">#}
+{#                        <a class="btn btn-primary btn-sm" href="{{ path('cards', {#}
+{#                            color: 'R'#}
+{#                        }) }}">Red</a>#}
+{#                    </li>#}
+{#                    <li class="d-inline">#}
+{#                        <a class="btn btn-primary btn-sm" href="{{ path('cards', {#}
+{#                            color: 'G'#}
+{#                        }) }}">Green</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="col col-md-6">#}
+{#                <div class="search">#}
+{#                    <form action="{{ path('cards') }}">#}
+{#                        <input type="text" placeholder="Search..." id="query" name="q">#}
+{#                        <button type="submit">Search</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+{#        <div>#}
+{#            <h2 class="mt-5">Cards</h2>#}
+{#            <div class="row">#}
+{#                {% for card in cards %}#}
+{#                    <div class="col col-md-4 text-center">#}
+{#                        <a class="card-list" href="{{ path('app_card_details', {#}
+{#                            id: card['id']#}
+{#                        }) }}" class="mixed-vinyl-container p-3 text-center">#}
+{#                            <h3>{{ card['name'] }}</h3>#}
+{#                            {% if card['imageUrl'] is defined %}#}
+{#                                <img class="card-list" src="{{ card['imageUrl'] }}">#}
+{#                            {% endif %}#}
+{#                        </a>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#        </div>#}
+    </div>
+{% endblock %}

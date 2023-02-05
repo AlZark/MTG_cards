@@ -8,9 +8,22 @@
                 <img class="card-list" src="{{ card['imageUrl'] }}">
             {% endif %}
             <br>
-            <span>{{ card['type'] }} | {{ card['rarity'] }}<span><br>
-            <span>{{ card['text'] }}
+            <span>{{ card['type'] }} | {{ card['rarity'] }}</span><br>
+            <span>{{ card['text'] }}</span>
 
+            <form action="{{ path('add_to_deck') }}" method="post">
+                <label for="decks">Select deck:</label><br>
+                <select name="deck" id="decks">
+
+                    {% for deck in decks %}
+
+                    <option value="{{ deck.id }}">{{ deck.name }}</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" value="{{ card['id'] }}" name="card">
+                <input type="submit" value="Submit">
+            </form>
         </div>
+
     </div>
 {% endblock %}

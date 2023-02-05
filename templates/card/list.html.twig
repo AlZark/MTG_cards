@@ -50,7 +50,7 @@
             <div class="row">
                 {% for card in cards %}
                     <div class="col col-md-4 text-center">
-                        <a class="card-list" href="{{ path('app_card_details', {
+                        <a class="card-list" href="{{ path('card_view', {
                             id: card['id']
                         }) }}" class="mixed-vinyl-container p-3 text-center">
                             <h3>{{ card['name'] }}</h3>

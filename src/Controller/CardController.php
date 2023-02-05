@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\DecksRepository;
 use App\Service\CardService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,15 +30,23 @@ class CardController extends AbstractController
     }
 
     #[Route('cards/{id}', name: 'card_view')]
-    public function cardDetails($id, CardService $service): Response
+    public function cardDetails($id, CardService $service, DecksRepository $decksRepository): Response
     {
         $card = $this->json($service->getCardsById($id)->toArray())->getContent();
 
         $data = json_decode($card, true);
 
+        $decks = $decksRepository->findAll();
+
+
+
+        //dd($decks);
+        //dd($data['card']['legalities']);
+
         return $this->render('card/view.html.twig', [
             'title' => 'MTG Cards',
             'card' => $data['card'],
+            'decks' => $decks
         ]);
     }
 

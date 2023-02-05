@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Card search</h1>
+
+        <h2 class="mt-5 mb-4">Filter by Color</h2>
+
+        <div>
+            <h2 class="mt-5">Cards</h2>
+            <div class="row">
+                {% for card in deckCards %}
+                    <div class="col col-md-4 text-center">
+                        {{ card.cardId }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

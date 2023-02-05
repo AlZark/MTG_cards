@@ -14,36 +14,36 @@ class DeckCards
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $card_id = null;
+    private ?string $card_id = null;
 
-    #[ORM\OneToOne(inversedBy: 'deckCards', cascade: ['persist', 'remove'])]
-    private ?Decks $deck = null;
+    #[ORM\Column]
+    private ?int $deckId = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCardId(): ?int
+    public function getCardId(): ?string
     {
         return $this->card_id;
     }
 
-    public function setCardId(int $card_id): self
+    public function setCardId(string $card_id): self
     {
         $this->card_id = $card_id;
 
         return $this;
     }
 
-    public function getDeck(): ?Decks
+    public function getDeckId(): ?int
     {
-        return $this->deck;
+        return $this->deckId;
     }
 
-    public function setDeck(?Decks $deck): self
+    public function setDeckId(int $deckId): self
     {
-        $this->deck = $deck;
+        $this->deckId = $deckId;
 
         return $this;
     }
